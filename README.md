@@ -1,5 +1,5 @@
 # Annoid
-Annotation library for Android.
+@Annotation library for Android.
 
 示例如下：
 
