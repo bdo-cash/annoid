@@ -17,6 +17,7 @@
 package hobby.wei.c;
 
 import android.util.Log;
+import hobby.wei.c.anno.annoid.BuildConfig;
 import hobby.wei.c.anno.proguard.Burden;
 
 /**
@@ -119,14 +120,18 @@ public class L {
 
     @Burden
     public static void i(Object o, String s, Object... args) {
-        checkArgs(args);
-        Log.i(TAG(o), (args == null || args.length == 0) ? String.valueOf(s) : String.format(s, args));
+        if (BuildConfig.DEBUG || Log.isLoggable(TAG(o), Log.INFO)) {
+            checkArgs(args);
+            Log.i(TAG(o), (args == null || args.length == 0) ? String.valueOf(s) : String.format(s, args));
+        }
     }
 
     @Burden
     public static void i(Object o, Throwable e, String s, Object... args) {
-        checkArgs(args);
-        Log.i(TAG(o), (args == null || args.length == 0) ? String.valueOf(s) : String.format(s, args), e);
+        if (BuildConfig.DEBUG || Log.isLoggable(TAG(o), Log.INFO)) {
+            checkArgs(args);
+            Log.i(TAG(o), (args == null || args.length == 0) ? String.valueOf(s) : String.format(s, args), e);
+        }
     }
 
     @Burden
@@ -136,14 +141,18 @@ public class L {
 
     @Burden
     public static void d(Object o, String s, Object... args) {
-        checkArgs(args);
-        Log.d(TAG(o), (args == null || args.length == 0) ? String.valueOf(s) : String.format(s, args));
+        if (BuildConfig.DEBUG || Log.isLoggable(TAG(o), Log.DEBUG)) {
+            checkArgs(args);
+            Log.d(TAG(o), (args == null || args.length == 0) ? String.valueOf(s) : String.format(s, args));
+        }
     }
 
     @Burden
     public static void d(Object o, Throwable e, String s, Object... args) {
-        checkArgs(args);
-        Log.d(TAG(o), (args == null || args.length == 0) ? String.valueOf(s) : String.format(s, args), e);
+        if (BuildConfig.DEBUG || Log.isLoggable(TAG(o), Log.DEBUG)) {
+            checkArgs(args);
+            Log.d(TAG(o), (args == null || args.length == 0) ? String.valueOf(s) : String.format(s, args), e);
+        }
     }
 
     @Burden
@@ -153,14 +162,18 @@ public class L {
 
     @Burden
     public static void w(Object o, String s, Object... args) {
-        checkArgs(args);
-        Log.w(TAG(o), (args == null || args.length == 0) ? String.valueOf(s) : String.format(s, args));
+        if (BuildConfig.DEBUG || Log.isLoggable(TAG(o), Log.WARN)) {
+            checkArgs(args);
+            Log.w(TAG(o), (args == null || args.length == 0) ? String.valueOf(s) : String.format(s, args));
+        }
     }
 
     @Burden
     public static void w(Object o, Throwable e, String s, Object... args) {
-        checkArgs(args);
-        Log.w(TAG(o), (args == null || args.length == 0) ? String.valueOf(s) : String.format(s, args), e);
+        if (BuildConfig.DEBUG || Log.isLoggable(TAG(o), Log.WARN)) {
+            checkArgs(args);
+            Log.w(TAG(o), (args == null || args.length == 0) ? String.valueOf(s) : String.format(s, args), e);
+        }
     }
 
     @Burden
@@ -169,14 +182,18 @@ public class L {
     }
 
     public static void e(Object o, String s, Object... args) {
-        checkArgs(args);
-        Log.e(TAG(o), (args == null || args.length == 0) ? String.valueOf(s) : String.format(s, args));
+        if (BuildConfig.DEBUG || Log.isLoggable(TAG(o), Log.ERROR)) {
+            checkArgs(args);
+            Log.e(TAG(o), (args == null || args.length == 0) ? String.valueOf(s) : String.format(s, args));
+        }
         //发送错误统计数据
     }
 
     public static void e(Object o, Throwable e, String s, Object... args) {
-        checkArgs(args);
-        Log.e(TAG(o), (args == null || args.length == 0) ? String.valueOf(s) : String.format(s, args), e);
+        if (BuildConfig.DEBUG || Log.isLoggable(TAG(o), Log.ERROR)) {
+            checkArgs(args);
+            Log.e(TAG(o), (args == null || args.length == 0) ? String.valueOf(s) : String.format(s, args), e);
+        }
         //发送错误统计数据
     }
 
@@ -185,15 +202,19 @@ public class L {
     }
 
     public static void v(Object o, String s, Object... args) {
-        checkArgs(args);
-        Log.v(TAG(o), (args == null || args.length == 0) ? String.valueOf(s) : String.format(s, args));
-        //发送错误统计数据
+        if (BuildConfig.DEBUG || Log.isLoggable(TAG(o), Log.VERBOSE)) {
+            checkArgs(args);
+            Log.v(TAG(o), (args == null || args.length == 0) ? String.valueOf(s) : String.format(s, args));
+        }
+        //发送统计数据
     }
 
     public static void v(Object o, Throwable e, String s, Object... args) {
-        checkArgs(args);
-        Log.v(TAG(o), (args == null || args.length == 0) ? String.valueOf(s) : String.format(s, args), e);
-        //发送错误统计数据
+        if (BuildConfig.DEBUG || Log.isLoggable(TAG(o), Log.VERBOSE)) {
+            checkArgs(args);
+            Log.v(TAG(o), (args == null || args.length == 0) ? String.valueOf(s) : String.format(s, args), e);
+        }
+        //发送统计数据
     }
 
     public static void v(Object o, Throwable e) {
