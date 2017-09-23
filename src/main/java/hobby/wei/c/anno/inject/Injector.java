@@ -24,6 +24,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import hobby.chenai.nakam.basis.TAG;
 import hobby.wei.c.L;
 import hobby.wei.c.util.IdGetter;
 import hobby.wei.c.util.ReflectUtils;
@@ -37,7 +38,7 @@ import java.util.*;
  * @author Wei Chou(weichou2010@gmail.com)
  */
 public class Injector {
-    private static final String TAG = "Injector";
+    private static final TAG.LogTag TAG = new TAG.LogTag(Injector.class.getSimpleName());
 
     public static void inject(Activity activity, Class<?> stopSearch) {
         inject(activity, activity, stopSearch);
@@ -195,7 +196,7 @@ public class Injector {
             worker = new InjectWorker4View(injectee, (View) container, stopSearch);
         }
         worker.inject(context);
-        L.i(TAG, "time duration:%sms. injectee:%s", ((System.nanoTime() - begin) * 1e-6), L.s(injectee.getClass().getSimpleName()));
+        L.i(TAG, "time duration:%sms. injectee:%s", ((System.nanoTime() - begin) * 1e-6), L.S(injectee.getClass().getSimpleName()));
     }
 
     private static abstract class InjectWorker<O, C> {

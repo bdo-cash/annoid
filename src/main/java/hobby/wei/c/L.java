@@ -16,208 +16,89 @@
 
 package hobby.wei.c;
 
-import android.util.Log;
-import hobby.wei.c.anno.annoid.BuildConfig;
+import hobby.chenai.nakam.basis.TAG.LogTag;
+import hobby.chenai.nakam.lang.J2S;
 import hobby.wei.c.anno.proguard.Burden;
 
 /**
  * @author Wei Chou(weichou2010@gmail.com)
+ * @version 2.0 upgrade to Scala version.
  */
 public class L {
-    private static final String sPrefix = "hobby.wei.c-";
-
     @Burden
-    private static String TAG(Object o) {
-        if (o instanceof String) return sPrefix + o;
-        if (o instanceof Class) return sPrefix + ((Class<?>) o).getSimpleName();
-        return sPrefix + o.getClass().getSimpleName();
+    public static LOG.S S(String s) {
+        return LOG.S(s);
     }
 
     @Burden
-    public static S s(String s) {
-        return S.obtain(s);
-    }
-
-    public static class S {
-        private static final Object sPoolSync = new Object();
-        private static final int MAX_POOL_SIZE = 50;
-        private static S sPool;
-        private static int sPoolSize;
-        private S next;
-
-        private String s;
-
-        private S() {
-        }
-
-        @Override
-        public String toString() {
-            return s;
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (o instanceof S) {
-                S so = (S) o;
-                return so.s == null && s == null ||
-                        so.s != null && so.s.equals(s);
-            }
-            return false;
-        }
-
-        @Override
-        public int hashCode() {
-            return s == null ? "".hashCode() : s.hashCode();
-        }
-
-        public static S obtain(String s) {
-            S so = obtain();
-            so.s = s;
-            return so;
-        }
-
-        private static S obtain() {
-            synchronized (sPoolSync) {
-                if (sPool != null) {
-                    S sp = sPool;
-                    sPool = sp.next;
-                    sp.next = null;
-                    sPoolSize--;
-                    return sp;
-                }
-            }
-            return new S();
-        }
-
-        private void recycle() {
-            s = null;
-            synchronized (sPoolSync) {
-                if (sPoolSize < MAX_POOL_SIZE) {
-                    next = sPool;
-                    sPool = this;
-                    sPoolSize++;
-                }
-            }
-        }
-
-        @Override
-        protected void finalize() throws Throwable {
-            recycle();
-            super.finalize();
-        }
+    public static void v(LogTag tag, String s, Object... args) {
+        v(tag, null, s, args);
     }
 
     @Burden
-    private static void checkArgs(Object... args) {
-        if (args != null && args.length > 0) {
-            for (Object o : args) {
-                if (o instanceof String) throw new IllegalArgumentException("请不要使用String作为参数，" +
-                        "以防使用常量字符串，在数组里无法被混淆优化掉。常量请拼接到String类型的那个参数一起，" +
-                        "如果为变量，请使用L.s(s)方法包装。");
-            }
-        }
+    public static void v(LogTag tag, Throwable e, String s, Object... args) {
+        LOG.v(() -> s, e, J2S.array(args), tag);
     }
 
     @Burden
-    public static void i(Object o, String s, Object... args) {
-        if (BuildConfig.DEBUG || Log.isLoggable(TAG(o), Log.INFO)) {
-            checkArgs(args);
-            Log.i(TAG(o), (args == null || args.length == 0) ? String.valueOf(s) : String.format(s, args));
-        }
+    public static void v(LogTag tag, Throwable e) {
+        v(tag, e, null);
     }
 
     @Burden
-    public static void i(Object o, Throwable e, String s, Object... args) {
-        if (BuildConfig.DEBUG || Log.isLoggable(TAG(o), Log.INFO)) {
-            checkArgs(args);
-            Log.i(TAG(o), (args == null || args.length == 0) ? String.valueOf(s) : String.format(s, args), e);
-        }
+    public static void d(LogTag tag, String s, Object... args) {
+        d(tag, null, s, args);
     }
 
     @Burden
-    public static void i(Object o, Throwable e) {
-        i(o, e, null);
+    public static void d(LogTag tag, Throwable e, String s, Object... args) {
+        LOG.d(() -> s, e, J2S.array(args), tag);
     }
 
     @Burden
-    public static void d(Object o, String s, Object... args) {
-        if (BuildConfig.DEBUG || Log.isLoggable(TAG(o), Log.DEBUG)) {
-            checkArgs(args);
-            Log.d(TAG(o), (args == null || args.length == 0) ? String.valueOf(s) : String.format(s, args));
-        }
+    public static void d(LogTag tag, Throwable e) {
+        d(tag, e, null);
     }
 
     @Burden
-    public static void d(Object o, Throwable e, String s, Object... args) {
-        if (BuildConfig.DEBUG || Log.isLoggable(TAG(o), Log.DEBUG)) {
-            checkArgs(args);
-            Log.d(TAG(o), (args == null || args.length == 0) ? String.valueOf(s) : String.format(s, args), e);
-        }
+    public static void i(LogTag tag, String s, Object... args) {
+        i(tag, null, s, args);
     }
 
     @Burden
-    public static void d(Object o, Throwable e) {
-        d(o, e, null);
+    public static void i(LogTag tag, Throwable e, String s, Object... args) {
+        LOG.i(() -> s, e, J2S.array(args), tag);
     }
 
     @Burden
-    public static void w(Object o, String s, Object... args) {
-        if (BuildConfig.DEBUG || Log.isLoggable(TAG(o), Log.WARN)) {
-            checkArgs(args);
-            Log.w(TAG(o), (args == null || args.length == 0) ? String.valueOf(s) : String.format(s, args));
-        }
+    public static void i(LogTag tag, Throwable e) {
+        i(tag, e, null);
     }
 
     @Burden
-    public static void w(Object o, Throwable e, String s, Object... args) {
-        if (BuildConfig.DEBUG || Log.isLoggable(TAG(o), Log.WARN)) {
-            checkArgs(args);
-            Log.w(TAG(o), (args == null || args.length == 0) ? String.valueOf(s) : String.format(s, args), e);
-        }
+    public static void w(LogTag tag, String s, Object... args) {
+        w(tag, null, s, args);
     }
 
     @Burden
-    public static void w(Object o, Throwable e) {
-        w(o, e, null);
+    public static void w(LogTag tag, Throwable e, String s, Object... args) {
+        LOG.w(() -> s, e, J2S.array(args), tag);
     }
 
-    public static void e(Object o, String s, Object... args) {
-        if (BuildConfig.DEBUG || Log.isLoggable(TAG(o), Log.ERROR)) {
-            checkArgs(args);
-            Log.e(TAG(o), (args == null || args.length == 0) ? String.valueOf(s) : String.format(s, args));
-        }
-        //发送错误统计数据
+    @Burden
+    public static void w(LogTag tag, Throwable e) {
+        w(tag, e, null);
     }
 
-    public static void e(Object o, Throwable e, String s, Object... args) {
-        if (BuildConfig.DEBUG || Log.isLoggable(TAG(o), Log.ERROR)) {
-            checkArgs(args);
-            Log.e(TAG(o), (args == null || args.length == 0) ? String.valueOf(s) : String.format(s, args), e);
-        }
-        //发送错误统计数据
+    public static void e(LogTag tag, String s, Object... args) {
+        e(tag, null, s, args);
     }
 
-    public static void e(Object o, Throwable e) {
-        e(o, e, null);
+    public static void e(LogTag tag, Throwable e, String s, Object... args) {
+        LOG.e(() -> s, e, J2S.array(args), tag);
     }
 
-    public static void v(Object o, String s, Object... args) {
-        if (BuildConfig.DEBUG || Log.isLoggable(TAG(o), Log.VERBOSE)) {
-            checkArgs(args);
-            Log.v(TAG(o), (args == null || args.length == 0) ? String.valueOf(s) : String.format(s, args));
-        }
-        //发送统计数据
-    }
-
-    public static void v(Object o, Throwable e, String s, Object... args) {
-        if (BuildConfig.DEBUG || Log.isLoggable(TAG(o), Log.VERBOSE)) {
-            checkArgs(args);
-            Log.v(TAG(o), (args == null || args.length == 0) ? String.valueOf(s) : String.format(s, args), e);
-        }
-        //发送统计数据
-    }
-
-    public static void v(Object o, Throwable e) {
-        v(o, e, null);
+    public static void e(LogTag tag, Throwable e) {
+        e(tag, e, null);
     }
 }
