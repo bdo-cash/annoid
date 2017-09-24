@@ -19,6 +19,7 @@ package hobby.wei.c;
 import hobby.chenai.nakam.basis.TAG.LogTag;
 import hobby.chenai.nakam.lang.J2S;
 import hobby.wei.c.anno.proguard.Burden;
+import scala.runtime.AbstractFunction0;
 
 /**
  * @author Wei Chou(weichou2010@gmail.com)
@@ -26,8 +27,8 @@ import hobby.wei.c.anno.proguard.Burden;
  */
 public class L {
     @Burden
-    public static LOG.S S(String s) {
-        return LOG.S(s);
+    public static LOG.S s(String s) {
+        return LOG.s(s);
     }
 
     @Burden
@@ -37,7 +38,12 @@ public class L {
 
     @Burden
     public static void v(LogTag tag, Throwable e, String s, Object... args) {
-        LOG.v(() -> s, e, J2S.array(args), tag);
+        LOG.v(new AbstractFunction0<String>() {
+            @Override
+            public String apply() {
+                return s;
+            }
+        }, e, J2S.array(args), tag);
     }
 
     @Burden
@@ -52,7 +58,12 @@ public class L {
 
     @Burden
     public static void d(LogTag tag, Throwable e, String s, Object... args) {
-        LOG.d(() -> s, e, J2S.array(args), tag);
+        LOG.d(new AbstractFunction0<String>() {
+            @Override
+            public String apply() {
+                return s;
+            }
+        }, e, J2S.array(args), tag);
     }
 
     @Burden
@@ -67,7 +78,12 @@ public class L {
 
     @Burden
     public static void i(LogTag tag, Throwable e, String s, Object... args) {
-        LOG.i(() -> s, e, J2S.array(args), tag);
+        LOG.i(new AbstractFunction0<String>() {
+            @Override
+            public String apply() {
+                return s;
+            }
+        }, e, J2S.array(args), tag);
     }
 
     @Burden
@@ -82,7 +98,12 @@ public class L {
 
     @Burden
     public static void w(LogTag tag, Throwable e, String s, Object... args) {
-        LOG.w(() -> s, e, J2S.array(args), tag);
+        LOG.w(new AbstractFunction0<String>() {
+            @Override
+            public String apply() {
+                return s;
+            }
+        }, e, J2S.array(args), tag);
     }
 
     @Burden
@@ -95,7 +116,12 @@ public class L {
     }
 
     public static void e(LogTag tag, Throwable e, String s, Object... args) {
-        LOG.e(() -> s, e, J2S.array(args), tag);
+        LOG.e(new AbstractFunction0<String>() {
+            @Override
+            public String apply() {
+                return s;
+            }
+        }, e, J2S.array(args), tag);
     }
 
     public static void e(LogTag tag, Throwable e) {

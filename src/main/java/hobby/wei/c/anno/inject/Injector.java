@@ -196,7 +196,7 @@ public class Injector {
             worker = new InjectWorker4View(injectee, (View) container, stopSearch);
         }
         worker.inject(context);
-        L.i(TAG, "time duration:%sms. injectee:%s", ((System.nanoTime() - begin) * 1e-6), L.S(injectee.getClass().getSimpleName()));
+        L.i(TAG, "time duration:%sms. injectee:%s", ((System.nanoTime() - begin) * 1e-6), L.s(injectee.getClass().getSimpleName()));
     }
 
     private static abstract class InjectWorker<O, C> {
