@@ -17,7 +17,7 @@
 package hobby.wei.c
 
 import android.util.Log
-import hobby.chenai.nakam.basis.TAG
+import hobby.chenai.nakam.basis.TAG._
 import hobby.chenai.nakam.lang.J2S._
 import hobby.wei.c.anno.annoid.BuildConfig
 import hobby.wei.c.anno.proguard.Burden
@@ -40,11 +40,8 @@ import java.util.concurrent.locks.ReentrantLock
   */
 object LOG {
   implicit class _2S(_s: String) {
-    def s: S = LOG.s(_s)
+    def s: S = LOG.S.obtain(_s)
   }
-
-  @Burden
-  def s(s: String): S = S.obtain(s)
 
   object S {
     private val sPoolSync = new ReentrantLock
@@ -85,7 +82,7 @@ object LOG {
 
     override def canEqual(that: Any) = that.isInstanceOf[S]
 
-    override def hashCode = if (s == null) "".hashCode else s.hashCode
+    override def hashCode = if (s.isNull) "".hashCode else s.hashCode
 
     override def toString = s
 
@@ -110,61 +107,91 @@ object LOG {
   }
 
   @Burden
+  @throws[IllegalArgumentException]
   private def checkArgs(args: Any*): Unit = {
-    if (args.nonEmpty) for (o <- args) {
-      if (o.isInstanceOf[String]) throw new IllegalArgumentException("请不要使用String作为参数，"
-        + "以防使用常量字符串，在数组里无法被混淆优化掉。常量请拼接到String类型的那个参数一起，"
-        + "如果为变量，请使用L.s(s)方法包装。")
+    for (o <- args) {
+      if (o.isInstanceOf[String]) throw new IllegalArgumentException("\"" + o
+        + "\"\n请不要使用 String 作为参数，"
+        + "以防使用常量字符串，在数组里无法被混淆优化掉。常量请拼接到 String 类型的那个参数一起，"
+        + "如果为变量，请使用 `str.s/L.s(str)` 方法包装。")
     }
   }
 
   @Burden
-  def v(s: => String = null, e: Throwable = null)(args: Any*)(implicit tag: TAG.LogTag) = {
+  def v(s: => String, args: Any*)(implicit tag: LogTag): Unit = v(null.asInstanceOf[Throwable], s, args)
+
+  @Burden
+  def v(e: Throwable, s: => String, args: Any*)(implicit tag: LogTag) = {
     val flats = args.flatten$
     checkArgs(flats: _*) // 放在外面接受检查，等release的时候会被直接删除。
     if (Log.isLoggable(tag.toString, Log.VERBOSE)) {
-      val msg = if (flats.isEmpty) String.valueOf(s) else String.format(s, flats)
+      val msg = if (flats.isEmpty) String.valueOf(s) else s.format(flats: _*)
       if (e.isNull) Log.v(tag.toString, msg) else Log.v(tag.toString, msg, e)
     }
   }
 
   @Burden
-  def d(s: => String = null, e: Throwable = null)(args: Any*)(implicit tag: TAG.LogTag) = {
+  def v(e: Throwable)(implicit tag: LogTag): Unit = v(e, null)
+
+  @Burden
+  def d(s: => String, args: Any*)(implicit tag: LogTag): Unit = d(null.asInstanceOf[Throwable], s, args)
+
+  @Burden
+  def d(e: Throwable, s: => String, args: Any*)(implicit tag: LogTag) = {
     val flats = args.flatten$
     checkArgs(flats: _*)
     if (Log.isLoggable(tag.toString, Log.DEBUG)) {
-      val msg = if (flats.isEmpty) String.valueOf(s) else String.format(s, flats)
+      val msg = if (flats.isEmpty) String.valueOf(s) else s.format(flats: _*)
       if (e.isNull) Log.d(tag.toString, msg) else Log.d(tag.toString, msg, e)
     }
   }
 
   @Burden
-  def i(s: => String = null, e: Throwable = null)(args: Any*)(implicit tag: TAG.LogTag) = {
+  def d(e: Throwable)(implicit tag: LogTag): Unit = d(e, null)
+
+  @Burden
+  def i(s: => String, args: Any*)(implicit tag: LogTag): Unit = i(null.asInstanceOf[Throwable], s, args)
+
+  @Burden
+  def i(e: Throwable, s: => String, args: Any*)(implicit tag: LogTag) = {
     val flats = args.flatten$
     checkArgs(flats: _*)
     if (Log.isLoggable(tag.toString, Log.INFO)) {
-      val msg = if (flats.isEmpty) String.valueOf(s) else String.format(s, flats)
+      val msg = if (flats.isEmpty) String.valueOf(s) else s.format(flats: _*)
       if (e.isNull) Log.i(tag.toString, msg) else Log.i(tag.toString, msg, e)
     }
   }
 
   @Burden
-  def w(s: => String, e: Throwable = null)(args: Any*)(implicit tag: TAG.LogTag) = {
+  def i(e: Throwable)(implicit tag: LogTag): Unit = i(e, null)
+
+  @Burden
+  def w(s: => String, args: Any*)(implicit tag: LogTag): Unit = w(null.asInstanceOf[Throwable], s, args)
+
+  @Burden
+  def w(e: Throwable, s: => String, args: Any*)(implicit tag: LogTag) = {
     val flats = args.flatten$
     checkArgs(flats: _*)
     if (BuildConfig.DEBUG || Log.isLoggable(tag.toString, Log.WARN)) {
-      val msg = if (flats.isEmpty) String.valueOf(s) else String.format(s, flats)
+      val msg = if (flats.isEmpty) String.valueOf(s) else s.format(flats: _*)
       if (e.isNull) Log.w(tag.toString, msg) else Log.w(tag.toString, msg, e)
     }
   }
 
-  def e(s: => String, e: Throwable = null)(args: Any*)(implicit tag: TAG.LogTag) = {
+  @Burden
+  def w(e: Throwable)(implicit tag: LogTag): Unit = w(e, null)
+
+  def e(s: => String, args: Any*)(implicit tag: LogTag): Unit = e(null.asInstanceOf[Throwable], s, args)
+
+  def e(e: Throwable, s: => String, args: Any*)(implicit tag: LogTag) = {
     val flats = args.flatten$
     checkArgs(flats: _*)
     if (BuildConfig.DEBUG || Log.isLoggable(tag.toString, Log.ERROR)) {
-      val msg = if (flats.isEmpty) String.valueOf(s) else String.format(s, flats)
+      val msg = if (flats.isEmpty) String.valueOf(s) else s.format(flats: _*)
       if (e.isNull) Log.e(tag.toString, msg) else Log.e(tag.toString, msg, e)
     }
     //发送错误统计数据
   }
+
+  def e(t: Throwable)(implicit tag: LogTag): Unit = e(t, null)
 }

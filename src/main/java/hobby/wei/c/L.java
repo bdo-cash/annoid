@@ -28,7 +28,7 @@ import scala.runtime.AbstractFunction0;
 public class L {
     @Burden
     public static LOG.S s(String s) {
-        return LOG.s(s);
+        return LOG.S$.MODULE$.obtain(s);
     }
 
     @Burden
@@ -38,12 +38,12 @@ public class L {
 
     @Burden
     public static void v(LogTag tag, Throwable e, String s, Object... args) {
-        LOG.v(new AbstractFunction0<String>() {
+        LOG.v(e, new AbstractFunction0<String>() {
             @Override
             public String apply() {
                 return s;
             }
-        }, e, J2S.array(args), tag);
+        }, J2S.array(args), tag);
     }
 
     @Burden
@@ -58,12 +58,12 @@ public class L {
 
     @Burden
     public static void d(LogTag tag, Throwable e, String s, Object... args) {
-        LOG.d(new AbstractFunction0<String>() {
+        LOG.d(e, new AbstractFunction0<String>() {
             @Override
             public String apply() {
                 return s;
             }
-        }, e, J2S.array(args), tag);
+        }, J2S.array(args), tag);
     }
 
     @Burden
@@ -78,12 +78,12 @@ public class L {
 
     @Burden
     public static void i(LogTag tag, Throwable e, String s, Object... args) {
-        LOG.i(new AbstractFunction0<String>() {
+        LOG.i(e, new AbstractFunction0<String>() {
             @Override
             public String apply() {
                 return s;
             }
-        }, e, J2S.array(args), tag);
+        }, J2S.array(args), tag);
     }
 
     @Burden
@@ -98,12 +98,12 @@ public class L {
 
     @Burden
     public static void w(LogTag tag, Throwable e, String s, Object... args) {
-        LOG.w(new AbstractFunction0<String>() {
+        LOG.w(e, new AbstractFunction0<String>() {
             @Override
             public String apply() {
                 return s;
             }
-        }, e, J2S.array(args), tag);
+        }, J2S.array(args), tag);
     }
 
     @Burden
@@ -116,12 +116,12 @@ public class L {
     }
 
     public static void e(LogTag tag, Throwable e, String s, Object... args) {
-        LOG.e(new AbstractFunction0<String>() {
+        LOG.e(e, new AbstractFunction0<String>() {
             @Override
             public String apply() {
                 return s;
             }
-        }, e, J2S.array(args), tag);
+        }, J2S.array(args), tag);
     }
 
     public static void e(LogTag tag, Throwable e) {
