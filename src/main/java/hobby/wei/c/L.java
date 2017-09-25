@@ -43,7 +43,7 @@ public class L {
             public String apply() {
                 return s;
             }
-        }, J2S.array(args), tag);
+        }, J2S.toSeq(args), tag);
     }
 
     @Burden
@@ -63,7 +63,7 @@ public class L {
             public String apply() {
                 return s;
             }
-        }, J2S.array(args), tag);
+        }, J2S.toSeq(args), tag);
     }
 
     @Burden
@@ -83,7 +83,7 @@ public class L {
             public String apply() {
                 return s;
             }
-        }, J2S.array(args), tag);
+        }, J2S.toSeq(args), tag);
     }
 
     @Burden
@@ -103,7 +103,7 @@ public class L {
             public String apply() {
                 return s;
             }
-        }, J2S.array(args), tag);
+        }, J2S.toSeq(args), tag);
     }
 
     @Burden
@@ -121,7 +121,7 @@ public class L {
             public String apply() {
                 return s;
             }
-        }, J2S.array(args), tag);
+        }, J2S.toSeq(args), tag);
     }
 
     public static void e(LogTag tag, Throwable e) {
