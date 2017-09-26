@@ -26,7 +26,7 @@ import java.util.concurrent.locks.ReentrantLock
 /**
   * 日志包装工具，可用使用如下命令控制日志的输出：
   * {{{
-  *   adb shell setprop log.tag.{YourTag} {LEVEL}
+  *   adb shell setprop "log.tag.{YourTag}" "{LEVEL}"
   * }}}
   *
   * 其中 LEVEL 的优先级顺序（从低到高）分别为：
