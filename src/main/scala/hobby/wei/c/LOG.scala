@@ -39,6 +39,8 @@ import java.util.concurrent.locks.ReentrantLock
   * @version 2.0 upgrade to Scala version.
   */
 object LOG {
+  lazy val DEBUG: Boolean = BuildConfig.DEBUG
+
   implicit class _2S(_s: String) {
     def s: S = LOG.S.obtain(_s)
   }
@@ -172,7 +174,7 @@ object LOG {
   def w(e: Throwable, s: => String, args: Any*)(implicit tag: LogTag) = {
     val flats = args.flatten$
     checkArgs(flats: _*)
-    if (BuildConfig.DEBUG || Log.isLoggable(tag.toString, Log.WARN)) {
+    if (DEBUG || Log.isLoggable(tag.toString, Log.WARN)) {
       val msg = if (flats.isEmpty) String.valueOf(s) else s.format(flats: _*)
       if (e.isNull) Log.w(tag.toString, msg) else Log.w(tag.toString, msg, e)
     }
@@ -186,7 +188,7 @@ object LOG {
   def e(e: Throwable, s: => String, args: Any*)(implicit tag: LogTag) = {
     val flats = args.flatten$
     checkArgs(flats: _*)
-    if (BuildConfig.DEBUG || Log.isLoggable(tag.toString, Log.ERROR)) {
+    if (DEBUG || Log.isLoggable(tag.toString, Log.ERROR)) {
       val msg = if (flats.isEmpty) String.valueOf(s) else s.format(flats: _*)
       if (e.isNull) Log.e(tag.toString, msg) else Log.e(tag.toString, msg, e)
     }
