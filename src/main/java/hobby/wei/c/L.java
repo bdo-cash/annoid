@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-present, Wei Chou (weichou2010@gmail.com)
+ * Copyright (C) 2014-present, Wei Chou(weichou2010@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@ package hobby.wei.c;
 
 import hobby.chenai.nakam.basis.TAG.LogTag;
 import hobby.chenai.nakam.lang.J2S;
+import hobby.chenai.nakam.tool.pool.S;
 import hobby.wei.c.anno.proguard.Burden;
 import scala.runtime.AbstractFunction0;
 
@@ -27,8 +28,8 @@ import scala.runtime.AbstractFunction0;
  */
 public class L {
     @Burden
-    public static LOG.S s(String s) {
-        return LOG.S$.MODULE$.obtain(s);
+    public static S s(String s) {
+        return S.s(s);
     }
 
     @Burden
