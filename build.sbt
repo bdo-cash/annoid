@@ -19,6 +19,8 @@ minSdkVersion in Android := "18"
 //resolvers += "jitpack" at "https://jitpack.io"
 //
 //libraryDependencies ++= Seq(
-//  "com.github.dedge-space" % "Annoguard" % "1.0.3-beta",
+// 如果要用 jitpack 打包的话就加上，打完了再注掉。
+// TODO: 独立使用本库的话，应该启用本依赖。
+//  "com.github.dedge-space" % "annoguard" % "1.0.3-beta",
 //  "com.github.dedge-space" % "scala-lang" % "a32314076b"
 //)
