@@ -16,10 +16,10 @@ buildToolsVersion in Android := Some("26.0.1")
 minSdkVersion in Android := "5"
 
 // 如果要用 jitpack 打包的话就加上，打完了再注掉。
-resolvers += "jitpack" at "https://jitpack.io"
+//resolvers += "jitpack" at "https://jitpack.io"
 
 libraryDependencies ++= Seq(
 // 如果要用 jitpack 打包的话就加上，打完了再注掉。
-  "com.github.dedge-space" % "annoguard" % "1.0.3-beta",
-  "com.github.dedge-space" % "scala-lang" % "4db02cf2fd"
+//  "com.github.dedge-space" % "annoguard" % "1.0.3-beta",
+//  "com.github.dedge-space" % "scala-lang" % "4db02cf2fd"
 )
