@@ -6,7 +6,7 @@ organization := "hobby.wei.c.anno"
 
 version := "1.0.0"
 
-scalaVersion := "2.11.7"
+scalaVersion := "2.12.6"
 
 // 等同于两句：targetSdkVersion, compileSdkVersion
 platformTarget in Android := "android-27"
