@@ -29,6 +29,8 @@ import hobby.wei.c.log.Logger
   * {{{
   *   adb shell setprop "log.tag.{YourTag}" "{LEVEL}"
   * }}}
+  * 注意：由于本日志组件会用到特殊的`TAG`标签，导致上述命令触发`invalid character`异常，因此
+  * 应对具体的`TAG`字符串内容进行如下替换：`@|` -> `TA`, `~` -> `G`; 并将`@a32`这部分字符舍弃。
   *
   * 其中 LEVEL 的优先级顺序（从低到高）分别为：
   * {{{
@@ -47,21 +49,21 @@ object LOG extends Logger {
   }
 
   override protected def logv(tag: LogTag, e: Throwable, s: => String, args: Any*): Unit = {
-    if (Log.isLoggable(tag.toString, Log.VERBOSE)) {
+    if (Log.isLoggable(tag.shell, Log.VERBOSE)) {
       val msg = if (args.isEmpty) String.valueOf(s) else s.format(args: _*)
       if (e.isNull) Log.v(tag.toString, msg) else Log.v(tag.toString, msg, e)
     }
   }
 
   override protected def logd(tag: LogTag, e: Throwable, s: => String, args: Any*): Unit = {
-    if (Log.isLoggable(tag.toString, Log.DEBUG)) {
+    if (Log.isLoggable(tag.shell, Log.DEBUG)) {
       val msg = if (args.isEmpty) String.valueOf(s) else s.format(args: _*)
       if (e.isNull) Log.d(tag.toString, msg) else Log.d(tag.toString, msg, e)
     }
   }
 
   override protected def logi(tag: LogTag, e: Throwable, s: => String, args: Any*): Unit = {
-    if (Log.isLoggable(tag.toString, Log.INFO)) {
+    if (Log.isLoggable(tag.shell, Log.INFO)) {
       val msg = if (args.isEmpty) String.valueOf(s) else s.format(args: _*)
       if (e.isNull) Log.i(tag.toString, msg) else Log.i(tag.toString, msg, e)
     }
