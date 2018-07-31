@@ -29,5 +29,5 @@ resolvers += "jitpack" at "https://jitpack.io"
 libraryDependencies ++= Seq(
   // 如果要用 jitpack 打包的话就加上，打完了再注掉。
   "com.github.dedge-space" % "annoguard" % "1.0.3-beta",
-  "com.github.dedge-space" % "scala-lang" % "247a5b318d"
+  "com.github.dedge-space" % "scala-lang" % "6077e4a865"
 )
