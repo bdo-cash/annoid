@@ -4,7 +4,7 @@ name := baseDirectory.value.getName
 
 organization := "hobby.wei.c.anno"
 
-version := "1.0.0"
+version := "1.0.1"
 
 scalaVersion := "2.11.11"
 
@@ -29,5 +29,5 @@ resolvers += "jitpack" at "https://jitpack.io"
 libraryDependencies ++= Seq(
   // 如果要用 jitpack 打包的话就加上，打完了再注掉。
   "com.github.dedge-space" % "annoguard" % "1.0.3-beta",
-  "com.github.dedge-space" % "scala-lang" % "6077e4a865"
+  "com.github.dedge-space" % "scala-lang" % "ccaa2cb00f"
 )

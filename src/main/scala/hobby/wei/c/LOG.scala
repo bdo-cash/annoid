@@ -19,8 +19,7 @@ package hobby.wei.c
 import android.util.Log
 import hobby.chenai.nakam.basis.TAG._
 import hobby.chenai.nakam.lang.J2S._
-import hobby.chenai.nakam.tool.pool.S
-import hobby.chenai.nakam.tool.pool.S.obtain
+import hobby.chenai.nakam.tool.pool._2S
 import hobby.wei.c.anno.annoid._
 import hobby.wei.c.log.Logger
 
@@ -41,12 +40,8 @@ import hobby.wei.c.log.Logger
   * @author Wei Chou(weichou2010@gmail.com)
   * @version 2.0 upgrade to Scala version.
   */
-object LOG extends Logger {
+object LOG extends Logger with _2S {
   lazy val DEBUG: Boolean = BuildConfig.DEBUG
-
-  implicit class _2S(_s: String) {
-    @inline def s: S = obtain(_s)
-  }
 
   override protected def logv(tag: LogTag, e: Throwable, s: => String, args: Any*): Unit = {
     if (Log.isLoggable(tag.shell, Log.VERBOSE)) {
