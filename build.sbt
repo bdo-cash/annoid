@@ -15,19 +15,19 @@ crossScalaVersions := Seq(
   "2.12.6")
 
 // 等同于两句：targetSdkVersion, compileSdkVersion
-platformTarget in Android := "android-27"
+platformTarget in Android := "android-28"
 
-buildToolsVersion in Android := Some("27.0.3")
+buildToolsVersion in Android := Some("28.0.3")
 
 minSdkVersion in Android := "5"
 
 offline := true
 
 // 如果要用 jitpack 打包的话就加上，打完了再注掉。
-//resolvers += "jitpack" at "https://jitpack.io"
+resolvers += "jitpack" at "https://jitpack.io"
 
 libraryDependencies ++= Seq(
   // 如果要用 jitpack 打包的话就加上，打完了再注掉。
-//  "com.github.dedge-space" % "annoguard" % "1.0.3-beta",
-//  "com.github.dedge-space" % "scala-lang" % "ccaa2cb00f"
+  "com.github.dedge-space" % "annoguard" % "1.0.3-beta",
+  "com.github.dedge-space" % "scala-lang" % "ccaa2cb00f"
 )
