@@ -4,7 +4,7 @@ name := baseDirectory.value.getName
 
 organization := "hobby.wei.c.anno"
 
-version := "1.0.1"
+version := "1.1.0"
 
 scalaVersion := "2.11.11"
 
@@ -15,9 +15,9 @@ crossScalaVersions := Seq(
   "2.12.6")
 
 // 等同于两句：targetSdkVersion, compileSdkVersion
-platformTarget in Android := "android-28"
+platformTarget in Android := "android-29"
 
-buildToolsVersion in Android := Some("28.0.3")
+buildToolsVersion in Android := Some("29.0.2")
 
 minSdkVersion in Android := "5"
 
@@ -29,5 +29,5 @@ resolvers += "jitpack" at "https://jitpack.io"
 libraryDependencies ++= Seq(
   // 如果要用 jitpack 打包的话就加上，打完了再注掉。
   "com.github.dedge-space" % "annoguard" % "1.0.3-beta",
-  "com.github.dedge-space" % "scala-lang" % "ccaa2cb00f"
+  "com.github.dedge-space" % "scala-lang" % "70aec87f34"
 )
