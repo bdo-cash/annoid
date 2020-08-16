@@ -65,17 +65,16 @@ object LOG extends Logger with _2S {
   }
 
   override protected def logw(tag: LogTag, e: Throwable, s: => String, args: Any*): Unit = {
-    if (DEBUG || Log.isLoggable(tag.toString, Log.WARN)) {
+    if (DEBUG || Log.isLoggable(tag.shell, Log.WARN)) {
       val msg = if (args.isEmpty) String.valueOf(s) else s.format(args: _*)
       if (e.isNull) Log.w(tag.toString, msg) else Log.w(tag.toString, msg, e)
     }
   }
 
   override protected def loge(tag: LogTag, e: Throwable, s: => String, args: Any*): Unit = {
-    if (DEBUG || Log.isLoggable(tag.toString, Log.ERROR)) {
+    if (DEBUG || Log.isLoggable(tag.shell, Log.ERROR)) {
       val msg = if (args.isEmpty) String.valueOf(s) else s.format(args: _*)
       if (e.isNull) Log.e(tag.toString, msg) else Log.e(tag.toString, msg, e)
     }
-    //发送错误统计数据
   }
 }
