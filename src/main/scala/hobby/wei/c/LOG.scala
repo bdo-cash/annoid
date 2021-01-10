@@ -28,7 +28,7 @@ import hobby.wei.c.log.Logger
   *   adb shell setprop "log.tag.{YourTag}" "{LEVEL}"
   * }}}
   * 注意：由于本日志组件会用到特殊的`TAG`标签，导致上述命令触发`invalid character`异常，因此
-  * 应对具体的`TAG`字符串内容进行如下替换：`@|` → `TA`, `~` → `G`; 并将结尾的特殊字符(包括类似`@a32`)都舍弃。
+  * 应对具体的`TAG`字符串内容进行如下替换：`@|` → `TA`, `~` → `G`; 并将除`.`外的特殊字符(包括类似`@a32`)都舍弃。
   *
   * 其中 LEVEL 的优先级顺序（从低到高）分别为：
   * {{{
