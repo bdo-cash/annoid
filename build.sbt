@@ -17,7 +17,7 @@ crossScalaVersions := Seq(
 // 等同于两句：targetSdkVersion, compileSdkVersion
 platformTarget in Android := "android-30"
 
-buildToolsVersion in Android := Some("30.0.2")
+buildToolsVersion in Android := Some("30.0.3")
 
 minSdkVersion in Android := "5"
 
@@ -29,5 +29,5 @@ resolvers += "jitpack" at "https://jitpack.io"
 libraryDependencies ++= Seq(
   // 如果要用 jitpack 打包的话就加上，打完了再注掉。
   "com.github.dedge-space" % "annoguard" % "v1.0.5-beta",
-  "com.github.dedge-space" % "scala-lang" % "4fb85494e2"
+  "com.github.dedge-space" % "scala-lang" % "15e0ab6a79"
 )
