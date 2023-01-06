@@ -1,0 +1,29 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'cash.bdo.scalroid'
+}
+
+android {
+    scalroid {
+//        scala.zincVersion.set('1.6.1')
+//        scalaCodeReferToKt = true
+//        ktCodeReferToScala = true
+    }
+
+    namespace 'hobby.wei.c.anno.annoid'
+    compileSdk 33
+
+    defaultConfig {
+        minSdk 23
+        targetSdk 33
+    }
+}
+
+dependencies {
+    api "com.github.bdo-cash:annoguard:v1.0.5-beta"
+    api "com.github.bdo-cash:scala-lang:138bff0c11"
+
+    // Scala 2
+    implementation "org.scala-lang:scala-library:$scala2.Version"
+}
