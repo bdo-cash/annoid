@@ -1,22 +1,28 @@
 plugins {
     id 'com.android.library'
-    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-android' //'org.jetbrains.kotlin.android'
     id 'cash.bdo.scalroid'
 }
+
+group = 'hobby.wei.c.anno'
+version = '1.2.1'
+
+ext.isReleaseVersion = !version.endsWith('SNAPSHOT')
 
 android {
     scalroid {
 //        scala.zincVersion.set('1.6.1')
 //        scalaCodeReferToKt = true
 //        ktCodeReferToScala = true
+//        javaDirsExcludes = ['/main/kotlin/', 'src/aaa/xxx']
     }
 
     namespace 'hobby.wei.c.anno.annoid'
-    compileSdk 33
+    compileSdk rootProject.ext.android.compileSdk // 33
 
     defaultConfig {
-        minSdk 23
-        targetSdk 33
+        minSdk rootProject.ext.android.minSdk // 5
+        targetSdk rootProject.ext.android.targetSdk // 33
     }
 }
 
