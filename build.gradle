@@ -21,14 +21,14 @@ android {
     compileSdk rootProject.ext.android.compileSdk // 33
 
     defaultConfig {
-        minSdk rootProject.ext.android.minSdk // 5
+        minSdk rootProject.ext.android.minSdk // 26 // 5
         targetSdk rootProject.ext.android.targetSdk // 33
     }
 }
 
 dependencies {
-    api "com.github.bdo-cash:annoguard:v1.0.5-beta"
-    api "com.github.bdo-cash:scala-lang:138bff0c11"
+    api "com.github.bdo-cash:annoguard:v1.0.6"
+    api "com.github.bdo-cash:scala-lang:ccf5b69c86"
 
     // Scala 2
     implementation "org.scala-lang:scala-library:$scala2.Version"
