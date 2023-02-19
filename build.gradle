@@ -28,7 +28,7 @@ android {
 
 dependencies {
     api "com.github.bdo-cash:annoguard:v1.0.6"
-    api "com.github.bdo-cash:scala-lang:ccf5b69c86"
+    api "com.github.bdo-cash:scala-lang:1096f23b08"
 
     // Scala 2
     implementation "org.scala-lang:scala-library:$scala2.Version"
