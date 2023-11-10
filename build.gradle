@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'hobby.wei.c.anno'
-version = '1.2.1'
+version = '1.2.2'
 
 ext.isReleaseVersion = !version.endsWith('SNAPSHOT')
 
@@ -23,6 +23,10 @@ android {
     defaultConfig {
         minSdk rootProject.ext.android.minSdk // 5
         targetSdk rootProject.ext.android.targetSdk // 33
+    }
+    compileOptions {
+        sourceCompatibility rootProject.ext.android.jdkVer
+        targetCompatibility rootProject.ext.android.jdkVer
     }
 }
 
